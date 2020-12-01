@@ -33,6 +33,7 @@ print WHITE "[Conf] Configure Go-related environment variable"
 sudo -i -u vagrant bash << EOF
 echo 'export GOPATH=\$HOME/go' >> ~/.bashrc
 echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
+export GOPROXY="https://goproxy.cn,direct"
 echo 'export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin' >> ~/.bashrc
 EOF
 
