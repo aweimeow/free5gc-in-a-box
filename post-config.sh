@@ -42,23 +42,12 @@ export GOPATH=\$HOME/go
 export GOROOT=/usr/local/go
 export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin
 
-echo "[Info] Install Go package"
-go get -u github.com/sirupsen/logrus
-
 echo "[Git] Cloning free5gc project from GitHub"
-git clone https://github.com/free5gc/free5gc --depth 1
-
-echo "[Git] Get the submodule from GitHub"
+git clone --recursive -b v3.0.4 -j `nproc` https://github.com/free5gc/free5gc.git
 cd ~/free5gc
-git checkout master
-git submodule sync
-git submodule update --init --jobs `nproc`
-git submodule foreach git checkout master
-git submodule foreach git pull --jobs `nproc`
 
 echo "[Go] Building free5gc core"
-go mod download
-./build.sh
+make all
 EOF
 
 print GREEN "End post-config script"
